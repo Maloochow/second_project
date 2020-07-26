@@ -1,0 +1,13 @@
+<h1>Welcome back <%=@user.username%></h1>
+
+<%if session[:gallery_name] == false%>
+<p>The gallery already exist, please enter a new name or contact the gallery admin for details.</p>
+<%end%>
+<h3>You don't belong to a gallery at the moment. Please create a new gallery below:</h3>
+<form method="post" action="/user/<%=@user.id%>/gallery">
+<label for="gallery[name]">Gallery Name:</label>
+<input type="text" name="gallery[name]">
+  <button class="btn waves-effect waves-light" type="submit" name="action">Enter
+    <i class="material-icons right">send</i>
+  </button>
+</form>

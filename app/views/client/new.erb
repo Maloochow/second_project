@@ -1,0 +1,21 @@
+<h1>Create a client:</h1>
+<form action="/gallery/<%=@gallery.id%>/client" method="post">
+<label for="client[app_id]">Client App Number:</label>
+<input type="text" name="client[app_id]">
+<p>Subscription status:</p>
+<p>
+<label>
+<input type="radio" id="active" name="status" value="true" checked>
+<span>Active</span>
+</label>
+</p>
+<p>
+<label>
+<input type="radio" id="deactivated" name="status" value="false">
+<span>Deactivated</span>
+</label>
+</p>
+  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+  </button>
+</form>

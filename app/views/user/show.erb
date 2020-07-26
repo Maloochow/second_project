@@ -1,0 +1,28 @@
+<h1>Current User:</h1>
+<p>Username: <%=@user.username%>
+<p>Email: <%=@user.email%>
+<p>Self Intro: <%=@user.intro%>
+<a class="waves-effect waves-teal btn-flat" href="/user/<%=@user.id%>/edit"><i class="material-icons left">edit</i>Edit</a>
+<br>
+<a class="waves-effect waves-light btn" href="/gallery/<%=@gallery.id%>/user/invite"><i class="material-icons left">drafts</i>Invite a User</a>
+
+<h1>All Registered Users:</h1>
+<ul class="collection">
+<%@gallery.users.each do |user|%>
+    <li class="collection-item avatar">
+<% if user.username%>
+    <span class="title"><%=user.username%>:</span>
+    <p><%=user.intro%><br>
+    <% if user.id == @gallery.admin_user_id%>
+    (Gallery Admin User)
+    <%end%></p>
+<%else%>
+    <span class="title"><%=user.email%>:</span>
+    <p>Invited</p>
+<%end%>
+    <% if @user.id == @gallery.admin_user_id%>
+    <a href="/user/<%=user.id%>/delete" class="secondary-content"><i class="material-icons">delete</i></a>
+    <%end%>
+    </li>
+<%end%>
+</ul>

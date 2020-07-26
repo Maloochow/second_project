@@ -1,0 +1,20 @@
+<h1>Update client #<%=@client.app_id%> status:</h1>
+<form action="/client/<%=@client.id%>" method="post">
+<input id="hidden" type="hidden" name="_method" value="patch">
+<p>Subscription status:</p>
+<p>
+<label>
+<input type="radio" id="active" name="status" value="true" <%='checked' if @cgstatus==true %>>
+<span>Active</span>
+</label>
+</p>
+<p>
+<label>
+<input type="radio" id="deactivated" name="status" value="false" <%='checked' if @cgstatus==false %>>
+<span>Deactivated</span>
+</label>
+</p>
+  <button class="btn waves-effect waves-light" type="submit" name="action">Update
+    <i class="material-icons right">send</i>
+  </button>
+</form>

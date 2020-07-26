@@ -1,0 +1,35 @@
+<h1>Edit preview:</h1>
+<form action="/ticket/<%=@ticket.id%>" method="post">
+<input id="hidden" type="hidden" name="_method" value="patch">
+
+    <p>Select an existing client or create a new client below:</p>
+
+<h3>Existing Clients:</h3>
+    <% @gallery.clients.each do |client| %>
+    <%if ClientGalleryStatus.find_by(gallery_id: @gallery.id, client_id: client.id).status%>
+    <p>
+    <label>
+    <input type="checkbox" name="previews[]" value="<%= client.id %>"  <%='checked="checked"' if @ticket.clients.include?(client) %>></input>
+    <span><%= client.app_id %></span>
+    </label>
+    </p>
+    <% end %>
+    <% end %>
+ 
+    <h3>Create a New Client</h3>
+    <label>Client App Number: </label>
+    <br>
+    <input type="text" name="client[app_id]">
+    <br>
+<h3>Preview Details</h3>
+<label for="ticket[artwork]">Artwork Title:</label>
+<input type="text" name="ticket[artwork]" value="<%=@ticket.artwork%>">
+<label for="ticket[starting_date]">Starting Date:</label>
+<input type="date" name="ticket[starting_date]" value=<%=@ticket.starting_date%>>
+<label for="ticket[ending_date]">Ending Date:</label>
+<input type="date" name="ticket[ending_date]" value=<%=@ticket.ending_date%>>
+ <br>
+   <button class="btn waves-effect waves-light" type="submit" name="action">Update
+    <i class="material-icons right">send</i>
+  </button>
+  </form>

@@ -1,0 +1,15 @@
+<h1>Please Login</h1>
+<%if session[:login]==false%>
+<h4>The email is not registered or the password is incorrect. Please try again</h4>
+<%end%>
+<form action="/user/login" method="POST">
+<label for="user[email]">Email:</label>
+  <input type="text" name="user[email]" required>
+<label for="user[password]">Password:</label>
+  <input type="password" name="user[password]" required>
+  <button class="btn waves-effect waves-light" type="submit" name="action">Login
+    <i class="material-icons right">send</i>
+  </button>
+</form>
+
+<a class="waves-effect waves-light btn" href="/user/new"><i class="material-icons left">add</i>Create New Account</a>

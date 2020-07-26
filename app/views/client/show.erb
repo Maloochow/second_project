@@ -1,0 +1,34 @@
+<h1>Client <%=@client.app_id%>:</h1>
+
+<%if @user.id == @gallery.admin_user_id%> 
+<a class="waves-effect waves-teal btn-flat" href="/client/<%=@client.id%>/edit"><i class="material-icons left">edit</i>Edit</a><br>
+<a class="waves-effect waves-teal btn-flat" href="/client/<%=@client.id%>/delete"><i class="material-icons left">delete</i>Delete</a>
+<%end%>
+
+<h3>Subscription Status: 
+        <%if @cgstatus.status%>
+        Active
+        <%else%>
+        Deactivated
+        <%end%></h3>
+
+<h2>All Previews:</h2>
+<table>
+  <tr>
+    <th>Preview</th>
+    <th>Artwork</th>
+    <th>Assigned By</th>
+    <th>     </th>
+  </tr>
+    <%@tickets.each do |ticket|%>
+  <tr>
+    <td><a href="/ticket/<%=ticket.id%>"><%=ticket.id%>: <%=ticket.status%></a></td>
+    <td><%=ticket.artwork%></td>
+    <td><%=ticket.user.username%></td>
+    <td><%if @user.id == ticket.user_id || @user.id == @gallery.admin_user_id%>
+    <a class="waves-effect waves-teal btn-flat" href="/ticket/<%=ticket.id%>/edit"><i class="material-icons left">edit</i>Edit</a><br>
+    <a class="waves-effect waves-teal btn-flat" href="/ticket/<%=ticket.id%>/delete"><i class="material-icons left">delete</i>Delete</a>
+    <%end%></td>
+  </tr>
+    <%end%>
+</table>

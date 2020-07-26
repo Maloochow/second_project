@@ -1,0 +1,19 @@
+<h3>Update the account details for <%=@user.username%></h3>
+<form action="/user/<%=@user.id%>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <p><label for="user[username]">Username:</label>
+  <input type="text" name="user[username]" value="<%=@user.username%>" required>
+  
+  <p><label for="user[email]">Email:</label>
+  <input type="text" name="user[email]" value="<%=@user.email%>" required>
+  
+  <p><label for="user[password]">Password:</label>
+  <input type="password" name="user[password]" required>
+
+  <p><label for="user[intro]">Intro:</label>
+  <input type="text" name="user[intro]" value="<%=@user.intro%>">
+    <button class="btn waves-effect waves-light" type="submit" name="action">Update
+    <i class="material-icons right">send</i>
+  </button>
+</form>
+

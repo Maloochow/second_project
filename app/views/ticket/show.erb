@@ -1,0 +1,29 @@
+<h1>Preview <%=@ticket.id%>:</h1>
+<div class="row">
+    <%if @user.id == @ticket.user_id || @user.id == @gallery.admin_user_id%>
+    <a class="waves-effect waves-teal btn-flat" href="/ticket/<%=@ticket.id%>/edit"><i class="material-icons left">edit</i>Edit</a>&nbsp;
+    <a class="waves-effect waves-teal btn-flat" href="/ticket/<%=@ticket.id%>/delete"><i class="material-icons left">delete</i>Delete</a>
+    <%end%>
+</div>
+
+<table>
+  <tr>
+    <th>Preview</th>
+    <th>Client APP Number</th>
+    <th>Artwork</th>
+    <th>Starting Date</th>
+    <th>Ending Date</th>
+    <th>Assigned By</th>
+    <th>     </th>
+  </tr>
+  <tr>
+    <td><%=@ticket.id%>: <%=@ticket.status%></td>
+    <td><%@ticket.clients.each do |client|%>
+        <%=client.app_id%><br>
+        <%end%></td>
+    <td><%=@ticket.artwork%></td>
+    <td><%=@ticket.starting_date%></td>
+    <td><%=@ticket.ending_date%></td>
+    <td><%=@ticket.user.username%></td>
+  </tr>
+</table>

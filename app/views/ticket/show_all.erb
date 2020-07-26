@@ -1,0 +1,33 @@
+<h1>Previews at <%=@gallery.name%>:</h1>
+
+<%if @tickets == []%>
+    <h3>There is no previews at the moment. Please create a new one:</h3>
+<a class="waves-effect waves-light btn" href="/gallery/<%=@gallery.id%>/ticket/new"><i class="material-icons left">add</i>Create a Preview</a>
+<%else%>
+<a class="waves-effect waves-light btn" href="/gallery/<%=@gallery.id%>/ticket/new"><i class="material-icons left">add</i>Create a Preview</a>
+<br><br>
+<table>
+  <tr>
+    <th>Preview</th>
+    <th>Client APP Number</th>
+    <th>Artwork</th>
+    <th>Assigned By</th>
+    <th>     </th>
+  </tr>
+    <%@tickets.each do |ticket|%>
+  <tr>
+    <td><a href="/ticket/<%=ticket.id%>"><%=ticket.id%>: <%=ticket.status%></a></td>
+    <td><%ticket.clients.each do |client|%>
+        <a href="/client/<%=client.id%>"><%=client.app_id%></a><br>
+        <%end%>
+    </td>
+    <td><%=ticket.artwork%></td>
+    <td><%=ticket.user.username%></td>
+    <td><%if @user.id == ticket.user_id || @user.id == @gallery.admin_user_id%>
+    <a class="waves-effect waves-teal btn-flat" href="/ticket/<%=ticket.id%>/edit"><i class="material-icons left">edit</i>Edit</a><br>
+    <a class="waves-effect waves-teal btn-flat" href="/ticket/<%=ticket.id%>/delete"><i class="material-icons left">delete</i>Delete</a>
+    <%end%></td>
+  </tr>
+    <%end%>
+</table>
+<%end%>

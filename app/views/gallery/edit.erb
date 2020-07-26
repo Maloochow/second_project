@@ -1,0 +1,10 @@
+<h2>Update the gallery name for <%=@gallery.name%></h2>
+
+<form action="/gallery/<%= @gallery.id %>" method="POST">
+<input id="hidden" type="hidden" name="_method" value="patch">
+<label for="name">New Name:</label>
+<input type="text" name="name">
+  <button class="btn waves-effect waves-light" type="submit" name="action">Update
+    <i class="material-icons right">send</i>
+  </button>
+</form>

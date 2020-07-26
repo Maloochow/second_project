@@ -1,0 +1,47 @@
+<h1>Create a new account</h1>
+
+<form action="/user/signup" method="POST">
+      <label for="user[username]">Username</label>
+      <input type="text" name="user[username]" required>
+      <label for="user[email]">Email:</label>
+      <input type="email" name="user[email]" required>
+      <label for="user[password]">Password:</label>
+      <input type="password" name="user[password]" required>
+      <label for="user[intro]">Intro</label>
+      <input type="text" name="user[intro]">
+  <button class="btn waves-effect waves-light" type="submit" name="action">Sign up
+  <i class="material-icons right">send</i>
+  </button>
+</form>
+
+<%# <div class="row">
+  <form class="col s12" action="/user/signup" method="POST">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="user[username]" type="text" class="validate" required>
+        <label for="user[username]">Username</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="user[email]" type="email" class="validate" required>
+        <label for="user[email]">Email:</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="user[password]" type="password" class="validate" required>
+        <label for="user[password]">Password:</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="user[intro]" type="text" class="validate">
+        <label for="user[intro]">Intro</label>
+      </div>
+    </div>
+  <button class="btn waves-effect waves-light" type="submit" name="action">Sign up
+  <i class="material-icons right">send</i>
+</button>
+  </form>
+</div> %>

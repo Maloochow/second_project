@@ -1,0 +1,30 @@
+<div class="right">
+<a class="waves-effect waves-light btn" href="/gallery/<%=@gallery.id%>/client/new"><i class="material-icons left">add</i>Add a Client</a>
+</div>
+<h1>All Clients:</h1>
+
+<%if @clients == []%>
+<p>There is no clients at the moment. Add one now!
+<%else%>
+
+<ul class="collection">
+<%@clients.each do |client|%>
+    <li class="collection-item avatar">
+    <%@cgstatus = ClientGalleryStatus.find_by(gallery_id: @gallery.id, client_id: client.id)%>
+      <%# <img src="images/yuna.jpg" alt="" class="circle"> %>
+      <span class="title"><a href="/client/<%=client.id%>"><%=client.app_id%>:</a></span>
+      <p><%if @cgstatus.status%>
+        Active
+        <%else%>
+        Deactivated
+        <%end%><br>
+        <%if @user.id == @gallery.admin_user_id%>
+    <a class="waves-effect waves-teal btn-flat" href="/client/<%=client.id%>/edit"><i class="material-icons left">edit</i>Edit</a><br>
+    <a class="waves-effect waves-teal btn-flat" href="/client/<%=client.id%>/delete"><i class="material-icons left">delete</i>Delete</a>
+        <%end%>
+      </p>
+      <a href="/client/<%=client.id%>" class="secondary-content"><i class="material-icons">account_box</i></a>
+    </li>
+<%end%>
+</ul>
+<%end%>

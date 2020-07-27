@@ -7,6 +7,8 @@ class GalleryController < ApplicationController
     post '/gallery' do 
         @gallery = Gallery.new(params[:gallery])
         @user = User.create(params[:user])
+        @user.email.downcase
+        @user.save
         if @user.save
             @gallery.users << @user
             @gallery.admin_user_id = @user.id

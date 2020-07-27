@@ -5,21 +5,42 @@ class UserController < ApplicationController
     end
 
     post '/user/signup' do 
-        if @user = User.find_by(email: params[:email]) && !@user.username
-            @user.update(params[:user])
-            session[:user_id] = @user.id
-            if @gallery = @user.gallery
+        @user = User.create(params[:user])
+    if @user.id
+        @user.email = params[:user][:email].downcase
+        @user.save
+        session[:user_id] = @user.id
+        @invites = UserInvite.all.select {|invite| invite.new_user_email == @user.email}
+        if @invites.count == 1
+            @gallery = Gallery.find_by_id(@invites[0].user.gallery.id)
+            @gallery.users << @user
+            @invites[0].status = true
             session[:gallery_id] = @gallery.id
-            redirect "gallery/#{@gallery.id}"
-            else
-                erb :'/user/nogallery'
-            end
-        elsif @user = User.find_by(email: params[:email]) && @user.username
-            redirect "/user/login"
+            redirect "/gallery/#{@gallery.id}"
+        elsif @invites.count == 0
+        erb :'/user/nogallery'
         else
-            @user = User.create(params[:user])
-            session[:user_id] = @user.id
-            erb :'/user/nogallery'
+            erb :'/user_invite/show'
+        end
+    else
+        redirect "/user/login"
+    end
+    end
+
+    post '/user/gallery/signup' do
+        current_user
+        if @gallery = Gallery.find_by_id(params[:gallery_id])
+        @gallery.users << @user
+        @invite = @gallery.tickets.where(new_user_email: @user.email)
+        @invite.status = true
+        @invite.save
+        @invites = UserInvite.all.select {|invite| invite.new_user_email == @user.email && invite.status == false}
+        @invites.each {|invite| invite.destroy}
+        session[:gallery_id] = @gallery.id
+        redirect "/gallery/#{@gallery.id}"
+        else
+        @invites = UserInvite.all.select {|invite| invite.new_user_email == @user.email}
+        erb :'/user_invite/show'
         end
     end
 
@@ -105,6 +126,10 @@ class UserController < ApplicationController
 
     get '/gallery/:id/users' do 
         if logged_in?
+            @emails = @gallery.users.map {|user| user.email}
+            @invites = @gallery.user_invites.select do |invite| 
+            !@emails.include?(invite.new_user_email)
+            end
         erb :'/user/show'
         else
         redirect "/"

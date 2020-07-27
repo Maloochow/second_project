@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200725232809) do
+ActiveRecord::Schema.define(version: 20200726233112) do
 
   create_table "client_gallery_statuses", force: :cascade do |t|
     t.integer "client_id"
@@ -48,10 +48,11 @@ ActiveRecord::Schema.define(version: 20200725232809) do
   end
 
   create_table "user_invites", force: :cascade do |t|
-    t.integer  "invitor_id"
-    t.integer  "new_user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
+    t.string   "new_user_email"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.boolean  "status"
   end
 
   create_table "users", force: :cascade do |t|

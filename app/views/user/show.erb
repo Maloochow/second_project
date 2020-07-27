@@ -2,7 +2,7 @@
 <p>Username: <%=@user.username%>
 <p>Email: <%=@user.email%>
 <p>Self Intro: <%=@user.intro%>
-<a class="waves-effect waves-teal btn-flat" href="/user/<%=@user.id%>/edit"><i class="material-icons left">edit</i>Edit</a>
+<a class="waves-effect waves-teal btn-flat" href="/user/<%=@user.id%>/edit"><i class="material-icons left">edit</i>Edit</a><br>
 <br>
 <a class="waves-effect waves-light btn" href="/gallery/<%=@gallery.id%>/user/invite"><i class="material-icons left">drafts</i>Invite a User</a>
 
@@ -10,19 +10,25 @@
 <ul class="collection">
 <%@gallery.users.each do |user|%>
     <li class="collection-item avatar">
-<% if user.username%>
     <span class="title"><%=user.username%>:</span>
     <p><%=user.intro%><br>
     <% if user.id == @gallery.admin_user_id%>
     (Gallery Admin User)
     <%end%></p>
-<%else%>
-    <span class="title"><%=user.email%>:</span>
-    <p>Invited</p>
-<%end%>
     <% if @user.id == @gallery.admin_user_id%>
-    <a href="/user/<%=user.id%>/delete" class="secondary-content"><i class="material-icons">delete</i></a>
+    <a href="/user/<%=@user.id%>/delete" class="secondary-content"><i class="material-icons">delete</i></a>
     <%end%>
     </li>
-<%end%>
+    <%end%>
+    <%@invites.each do |invite|%>
+    <%if invite.status == false%>
+    <li class="collection-item avatar">
+    <span class="title"><%=invite.new_user_email%>:</span>
+    <p>Invited</p>
+        <% if @user.id == @gallery.admin_user_id || @user.id == invite.user_id %>
+    <a href="/invite/<%=invite.id%>/delete" class="secondary-content"><i class="material-icons">delete</i></a>
+        <%end%>
+    </li>
+    <%end%>
+    <%end%>
 </ul>

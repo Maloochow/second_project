@@ -22,7 +22,7 @@ end
 
 group :development, :test do
   gem 'pry'
-  gem 'sqlite3', '~> 1.3.6'
+  # gem 'sqlite3', '~> 1.3.6'
 end
 
 group :production do

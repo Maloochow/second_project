@@ -8,7 +8,7 @@ Bundler.require(:default, ENV['SINATRA_ENV'])
 #   :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
 # )
 
+require 'securerandom'
 require 'dotenv/load'
-
 require './app/controllers/application_controller'
 require_all 'app'

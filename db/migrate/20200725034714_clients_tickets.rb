@@ -1,4 +1,4 @@
-class ClientsTickets < ActiveRecord::Migration
+class ClientsTickets < ActiveRecord::Migration[4.2]
   def change
     create_table :clients_tickets, id: false do |t|
       t.belongs_to :clients

@@ -1,4 +1,4 @@
-class ClientGalleryTable < ActiveRecord::Migration
+class ClientGalleryTable < ActiveRecord::Migration[4.2]
   def change
     create_table :client_gallery_status do |t|
       t.integer :client_id

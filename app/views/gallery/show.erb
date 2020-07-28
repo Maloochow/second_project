@@ -1,3 +1,4 @@
+<div class="container">  
 <h1><%=@gallery.name%></h1>
 <%if @user.id == @gallery.admin_user_id%>
 <a class="waves-effect waves-teal btn-flat" href="/gallery/<%=@gallery.id%>/edit"><i class="material-icons left">edit</i>Edit</a>
@@ -36,3 +37,4 @@
     <%end%>
 </table>
 <%end%>
+</div>

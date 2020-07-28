@@ -1,3 +1,4 @@
+<div class="container">  
 <h1>Preview <%=@ticket.id%>:</h1>
 <div class="row">
     <%if @user.id == @ticket.user_id || @user.id == @gallery.admin_user_id%>
@@ -27,3 +28,4 @@
     <td><%=@ticket.user.username%></td>
   </tr>
 </table>
+</div>

@@ -1,3 +1,4 @@
+<div class="container">  
 <h3>Update the account details for <%=@user.username%></h3>
 <form action="/user/<%=@user.id%>" method="POST">
   <input id="hidden" type="hidden" name="_method" value="patch">
@@ -17,3 +18,4 @@
   </button>
 </form>
 
+</div>

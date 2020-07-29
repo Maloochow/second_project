@@ -49,7 +49,7 @@ class UserController < ApplicationController
     end
 
     post "/user/login" do
-        @user = User.find_by(email: params[:user][:email])
+        @user = User.find_by(email: params[:user][:email].downcase)
         if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id
             session[:login]= true

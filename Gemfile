@@ -12,6 +12,7 @@ gem 'tux'
 gem 'materialize-sass'
 gem 'dotenv'
 gem 'rack-flash3'
+  gem 'pg'
 
 group :test do
   gem 'rspec'
@@ -25,6 +26,6 @@ group :development, :test do
   # gem 'sqlite3', '~> 1.3.6'
 end
 
-group :production do
-  gem 'pg'
-end
+# group :production do
+#   gem 'pg'
+# end

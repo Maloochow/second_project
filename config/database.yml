@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: development
+  database: second_project_development
   pool: 2
 production:
   adapter: postgresql
